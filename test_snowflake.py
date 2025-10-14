@@ -6,8 +6,52 @@ def test_snowflake_exists():
 
 
 def test_snowflake_0_generations_empty_grid():
-    assert snowflake(0) == [[]]
+    assert snowflake(0) == []
 
 
 def test_snowflake_1_generation_1_square():
     assert snowflake(1) == [[1]]
+
+
+def test_snowflake_2_generations_3_x_3():
+    assert snowflake(2) ==  [
+                                [0, 1, 0],
+                                [1, 1, 1],
+                                [0, 1, 0],
+                            ]
+
+
+# def test_snowflake_3_generations_5_x_5():
+#     assert snowflake(3) ==  [
+#                                 [0, 0, 1, 0, 0],
+#                                 [0, 0, 1, 0, 0],
+#                                 [1, 1, 1, 1, 1],
+#                                 [0, 0, 1, 0, 0],
+#                                 [0, 0, 1, 0, 0],
+#                             ]
+
+
+# def test_snowflake_4_generations_7_x_7():
+#     assert snowflake(4) ==  [
+#                                 [0, 0, 0, 1, 0, 0, 0],
+#                                 [0, 0, 1, 1, 1, 0, 0],
+#                                 [0, 1, 0, 1, 0, 1, 0],
+#                                 [1, 1, 1, 1, 1, 1, 1],
+#                                 [0, 1, 0, 1, 0, 1, 0],
+#                                 [0, 0, 1, 1, 1, 0, 0],
+#                                 [0, 0, 0, 1, 0, 0, 0],
+#                             ]
+
+
+# def test_snowflake_5_generations_9_x_9():
+#     assert snowflake(5) ==  [
+#                                 [0, 0, 0, 0, 1, 0, 0, 0, 0],
+#                                 [0, 0, 0, 0, 1, 0, 0, 0, 0],
+#                                 [0, 0, 0, 1, 1, 1, 0, 0, 0],
+#                                 [0, 0, 1, 0, 1, 0, 1, 0, 0],
+#                                 [1, 1, 1, 1, 1, 1, 1, 1, 1],
+#                                 [0, 0, 1, 0, 1, 0, 1, 0, 0],
+#                                 [0, 0, 0, 1, 1, 1, 0, 0, 0],
+#                                 [0, 0, 0, 0, 1, 0, 0, 0, 0],
+#                                 [0, 0, 0, 0, 1, 0, 0, 0, 0],
+#                             ]
