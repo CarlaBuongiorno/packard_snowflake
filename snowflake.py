@@ -9,7 +9,7 @@ def snowflake(number_of_generations):
         grid = add_center_row(grid, number_of_generations)
         grid = build_rows_below_center(grid, half_number_of_generations)
         grid = build_rows_above_center(grid, half_number_of_generations)
-        filled_rows = fill_rows_with_zeros(grid, half_number_of_generations)
+        filled_rows = fill_rows_with_zeros(grid, number_of_generations, half_number_of_generations)
 
         print(grid)
         return grid
@@ -35,12 +35,11 @@ def build_rows_above_center(grid, half_number_of_generations):
     return grid
 
 
-def fill_rows_with_zeros(grid, half_number_of_generations):
-    for i in range(half_number_of_generations-1):
-        for row in grid:
-            if row == grid[1]:
-                pass
-            else:
-                row.insert(0, 0)
-                row.append(0)
+def fill_rows_with_zeros(grid, number_of_generations, half_number_of_generations):
+    for row in grid:
+        if len(row) == (number_of_generations*2-1):
+            continue
+        for i in range(half_number_of_generations-1):
+            row.insert(0, 0)
+            row.append(0)
     return grid
