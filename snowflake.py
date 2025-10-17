@@ -7,8 +7,7 @@ def snowflake(number_of_generations):
         
         for y in range(len(grid)):
             for x in range(len(grid)):
-                print(y, x)
-                different_check(grid, y, x)
+                check = check_one_touches_one(grid, y, x)
 
         print(grid)
         return grid
@@ -23,9 +22,19 @@ def build_grid(grid_size):
     return grid
 
 
-def different_check(grid, y, x):
-    if len(grid) > 1 and grid[y+1][x] == 1:
-        grid[y][x] = 1
-    if len(grid)-1 > x and grid[y][x+1] == 1:
+def check_one_touches_one(grid, y, x):
+    if (len(grid)-1 > y and grid[y+1][x] == 1 or
+        len(grid)-1 > x and grid[y][x+1] == 1 or 
+        grid[y-1][x] == 1):
         grid[y][x] = 1
     return grid
+
+
+# def different_check(grid, y, x):
+#     if len(grid)-1 > y and grid[y+1][x] == 1:
+#         grid[y][x] = 1
+#     if len(grid)-1 > x and grid[y][x+1] == 1:
+#         grid[y][x] = 1
+#     if grid[y-1][x] == 1:
+#         grid[y][x] = 1
+#     return grid

@@ -1,6 +1,6 @@
 import pytest
 
-from snowflake import snowflake, different_check
+from snowflake import snowflake, check_one_touches_one
 
 
 def test_snowflake_exists():
@@ -54,9 +54,37 @@ def test_snowflake_1_generation_1_square():
              [[0, 0, 0],
               [1, 1, 0],
               [0, 0, 0]]),
+            ([[0, 0, 0], 
+              [0, 1, 0], 
+              [0, 0, 0]],
+              1, 2,
+             [[0, 0, 0],
+              [0, 1, 0],
+              [0, 0, 0]]),
+            ([[0, 0, 0], 
+              [0, 1, 0], 
+              [0, 0, 0]],
+              2, 0,
+             [[0, 0, 0],
+              [0, 1, 0],
+              [0, 0, 0]]),
+            ([[0, 0, 0], 
+              [0, 1, 0], 
+              [0, 0, 0]],
+              2, 1,
+             [[0, 0, 0],
+              [0, 1, 0],
+              [0, 1, 0]]),
+            ([[0, 0, 0], 
+              [0, 1, 0], 
+              [0, 0, 0]],
+              2, 2,
+             [[0, 0, 0],
+              [0, 1, 0],
+              [0, 0, 0]]),
 ])
-def test_different_check(grid, y, x, expected):
-    assert different_check(grid, y, x) == expected
+def test_check_one_touches_one(grid, y, x, expected):
+    assert check_one_touches_one(grid, y, x) == expected
 
 
 # def test_snowflake_3_generations_5_x_5():
