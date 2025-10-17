@@ -1,3 +1,5 @@
+import pytest
+
 from snowflake import snowflake, different_check
 
 
@@ -20,61 +22,42 @@ def test_snowflake_1_generation_1_square():
 #                                 [0, 1, 0],
 #                             ]
 
-def test_different_check():
-    assert different_check(
-                            [[1]], 0, 0) == [[1]]
 
 
-def test_different_check_1():
-    assert different_check(
-                            [
-                                [0, 0, 0],
-                                [0, 1, 0],
-                                [0, 0, 0],
-                            ], 0, 0) == [
-                                            [0, 0, 0],
-                                            [0, 1, 0],
-                                            [0, 0, 0],
-                                        ]
+@pytest.mark.parametrize('grid, y, x, expected', [
+            ([[1]], 0, 0, [[1]]),
+            ([[0, 0, 0], 
+              [0, 1, 0], 
+              [0, 0, 0]],
+              0, 0,
+             [[0, 0, 0],
+              [0, 1, 0],
+              [0, 0, 0]]),
+            ([[0, 0, 0], 
+              [0, 1, 0], 
+              [0, 0, 0]],
+              0, 1,
+             [[0, 1, 0],
+              [0, 1, 0],
+              [0, 0, 0]]),
+            ([[0, 0, 0], 
+              [0, 1, 0], 
+              [0, 0, 0]],
+              0, 2,
+             [[0, 0, 0],
+              [0, 1, 0],
+              [0, 0, 0]]),
+            ([[0, 0, 0], 
+              [0, 1, 0], 
+              [0, 0, 0]],
+              1, 0,
+             [[0, 0, 0],
+              [1, 1, 0],
+              [0, 0, 0]]),
+])
+def test_different_check(grid, y, x, expected):
+    assert different_check(grid, y, x) == expected
 
-
-def test_different_check_2():
-    assert different_check(
-                            [
-                                [0, 0, 0],
-                                [0, 1, 0],
-                                [0, 0, 0],
-                            ], 0, 1) == [
-                                            [0, 1, 0],
-                                            [0, 1, 0],
-                                            [0, 0, 0],
-                                        ]
-
-
-def test_different_check_3():
-    assert different_check(
-                            [
-                                [0, 0, 0],
-                                [0, 1, 0],
-                                [0, 0, 0],
-                            ], 0, 2) == [
-                                            [0, 0, 0],
-                                            [0, 1, 0],
-                                            [0, 0, 0],
-                                        ]
-
-
-def test_different_check_4():
-    assert different_check(
-                            [
-                                [0, 0, 0],
-                                [0, 1, 0],
-                                [0, 0, 0],
-                            ], 1, 0) == [
-                                            [0, 0, 0],
-                                            [1, 1, 0],
-                                            [0, 0, 0],
-                                        ]
 
 # def test_snowflake_3_generations_5_x_5():
 #     assert snowflake(3) ==  [
