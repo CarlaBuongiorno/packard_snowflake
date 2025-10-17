@@ -1,55 +1,31 @@
 def snowflake(number_of_generations):
-    grid = []
+    grid_size = number_of_generations*2-1
+    center = number_of_generations-1
     if number_of_generations > 0:
-        grid.append([1])
+        grid = build_grid(grid_size)
+        grid[center][center] = 1
+        
+        for y in range(len(grid)):
+            for x in range(len(grid)):
+                print(y, x)
+                different_check(grid, y, x)
+
+        print(grid)
         return grid
     else:
-        return grid
+        return []
 
 
-
-# import math
-
-
-# def snowflake(number_of_generations):
-#     grid = []
-#     grid_size = (number_of_generations*2)-1
-#     half_number_of_generations = math.ceil(grid_size/2)
-#     if number_of_generations > 0:
-#         grid = add_center_row(grid, number_of_generations)
-#         grid = build_rows_below_center(grid, half_number_of_generations)
-#         grid = build_rows_above_center(grid, half_number_of_generations)
-#         filled_rows = fill_rows_with_zeros(grid, number_of_generations, half_number_of_generations)
-
-#         print(grid)
-#         return grid
-#     else:
-#         return grid
-        
-
-# def add_center_row(grid, number_of_generations):
-#     center_row = [1 for i in range(number_of_generations*2-1)]
-#     grid.append(center_row)
-#     return grid
+def build_grid(grid_size):
+    grid = []
+    for i in range(grid_size):
+        grid.append([0 for i in range(grid_size)])
+    return grid
 
 
-# def build_rows_below_center(grid, half_number_of_generations):
-#     for i in range(half_number_of_generations-1):
-#         grid.append([1])
-#     return grid
-
-
-# def build_rows_above_center(grid, half_number_of_generations):
-#     for i in range(half_number_of_generations-1):
-#         grid.insert(0, [1])
-#     return grid
-
-
-# def fill_rows_with_zeros(grid, number_of_generations, half_number_of_generations):
-#     for row in grid:
-#         if len(row) == (number_of_generations*2-1):
-#             continue
-#         for i in range(half_number_of_generations-1):
-#             row.insert(0, 0)
-#             row.append(0)
-#     return grid
+def different_check(grid, y, x):
+    if len(grid) > 1 and grid[y+1][x] == 1:
+        grid[y][x] = 1
+    if len(grid)-1 > x and grid[y][x+1] == 1:
+        grid[y][x] = 1
+    return grid
