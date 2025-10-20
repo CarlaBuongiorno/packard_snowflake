@@ -113,13 +113,13 @@ def test_snowflake_2_generations_3_x_3():
               [0, 0, 0, 0, 0]],
               1, 0,
              False),
-            # ([[0, 0, 0, 0, 0],
-            #   [0, 0, 1, 0, 0],
-            #   [0, 1, 1, 1, 0],
-            #   [0, 0, 1, 0, 0],
-            #   [0, 0, 0, 0, 0]],
-            #   1, 1,
-            #  False),
+            ([[0, 0, 0, 0, 0],
+              [0, 0, 1, 0, 0],
+              [0, 1, 1, 1, 0],
+              [0, 0, 1, 0, 0],
+              [0, 0, 0, 0, 0]],
+              1, 1,
+             False),
 ])
 def test_check_one_touches_one(grid, y, x, expected):
     assert check_one_touches_one(grid, y, x) == expected

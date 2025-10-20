@@ -30,14 +30,34 @@ def check_one_touches_one(grid, y, x):
     count = 0
     # count the number of times there is a 1 touching another 1
     # it can only be 1 time!
-    if (len(grid)-1 > y and grid[y+1][x] == 1 or
-        len(grid)-1 > x and grid[y][x+1] == 1 or 
-        grid[y-1][x] == 1 or grid[y][x-1] == 1):
+    if len(grid)-1 > y and grid[y+1][x] == 1:
         count += 1
+    if len(grid)-1 > x and grid[y][x+1] == 1:
+        count += 1
+    if grid[y-1][x] == 1:
+        count += 1
+    if grid[y][x-1] == 1:
+        count += 1
+    print(grid, y, x, count)
     if count == 1:
         return True
     else:
         return False
+
+
+# def check_one_touches_one(grid, y, x):
+#     count = 0
+#     # count the number of times there is a 1 touching another 1
+#     # it can only be 1 time!
+#     if (len(grid)-1 > y and grid[y+1][x] == 1 or # if 4 > 1 and True or
+#         len(grid)-1 > x and grid[y][x+1] == 1 or # 4 > 1 and True or
+#         grid[y-1][x] == 1 or grid[y][x-1] == 1): # False or False
+#         count += 1
+#     if count == 1:
+#         return True
+#     else:
+#         return False
+
 
 # def check_one_touches_one(grid, y, x):
 #     if len(grid)-1 > y and grid[y+1][x] == 1:
