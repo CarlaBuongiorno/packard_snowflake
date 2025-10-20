@@ -25,7 +25,7 @@ def test_snowflake_2_generations_3_x_3():
 
 
 @pytest.mark.parametrize('grid, y, x, expected', [
-            # ([[1]], 0, 0, [[1]]),
+            ([[1]], 0, 0, True),
             ([[0, 0, 0], 
               [0, 1, 0], 
               [0, 0, 0]],

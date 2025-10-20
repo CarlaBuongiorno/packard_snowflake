@@ -34,11 +34,11 @@ def check_one_touches_one(grid, y, x):
         count += 1
     if len(grid)-1 > x and grid[y][x+1] == 1:
         count += 1
-    if grid[y-1][x] == 1:
+    if len(grid) > 1 and grid[y-1][x] == 1:
         count += 1
+    print(count)
     if grid[y][x-1] == 1:
         count += 1
-    print(grid, y, x, count)
     if count == 1:
         return True
     else:
