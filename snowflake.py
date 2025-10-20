@@ -28,15 +28,12 @@ def build_grid(grid_size):
 
 def check_one_touches_one(grid, y, x):
     count = 0
-    # count the number of times there is a 1 touching another 1
-    # it can only be 1 time!
     if len(grid)-1 > y and grid[y+1][x] == 1:
         count += 1
     if len(grid)-1 > x and grid[y][x+1] == 1:
         count += 1
     if len(grid) > 1 and grid[y-1][x] == 1:
         count += 1
-    print(count)
     if grid[y][x-1] == 1:
         count += 1
     if count == 1:
