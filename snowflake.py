@@ -1,12 +1,12 @@
 from copy import deepcopy
 
 
-def snowflake(number_of_generations): # 2
-    grid_size = number_of_generations*2-1 # 3
-    center = number_of_generations-1 # center is 1
+def snowflake(number_of_generations):
+    grid_size = number_of_generations*2-1
+    center = number_of_generations-1
 
-    if number_of_generations > 0: # To empty grid test
-        grid = build_grid(grid_size) # 3 x 3 grid
+    if number_of_generations > 0: # To pass empty grid test
+        grid = build_grid(grid_size)
         grid[center][center] = 1 # center is 1
         
         count = 2
