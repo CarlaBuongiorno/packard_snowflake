@@ -16,11 +16,8 @@ def snowflake(number_of_generations):
                 for x in range(len(grid)):
                     if check_one_touches_one(grid, y, x):
                         new_grid[y][x] = 1
-
             count += 1
             grid = new_grid
-            print('Grid', grid, '\n', 'New grid', new_grid)
-
         return grid
     else:
         return []

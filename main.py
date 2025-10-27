@@ -26,12 +26,21 @@ Is that too easy? Bonus points available:
     Could you generalize your program to produce both?
 '''
 
+import argparse
+
 from snowflake import snowflake
 
 
 def main():
-    packard_snowflake = snowflake()
-    print(packard_snowflake)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('generations', type=int, help='Type the number of generations you want to see.')
+    args = parser.parse_args()
+    number_of_generations = args.generations
+    packard_snowflake = snowflake(number_of_generations)
+    
+    for row in packard_snowflake:
+        print(" ".join(str(column) for column in row))
+
 
 if __name__ == '__main__':
     main()
