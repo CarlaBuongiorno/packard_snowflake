@@ -1,23 +1,27 @@
 from copy import deepcopy
 
 
-def snowflake(number_of_generations):
-    grid_size = number_of_generations*2-1
-    center = number_of_generations-1
+def snowflake(number_of_generations): # 2
+    grid_size = number_of_generations*2-1 # 3
+    center = number_of_generations-1 # center is 1
 
-    if number_of_generations > 0:
-        grid = build_grid(grid_size)
-        grid[center][center] = 1
+    if number_of_generations > 0: # To empty grid test
+        grid = build_grid(grid_size) # 3 x 3 grid
+        grid[center][center] = 1 # center is 1
         
-        new_grid = deepcopy(grid)
-        for y in range(len(grid)):
-            for x in range(len(grid)):
-                if check_one_touches_one(grid, y, x):
-                    new_grid[y][x] = 1
+        count = 2
+        while count <= number_of_generations:
+            new_grid = deepcopy(grid) # old grid doesnt change
+            for y in range(len(grid)):
+                for x in range(len(grid)):
+                    if check_one_touches_one(grid, y, x):
+                        new_grid[y][x] = 1
 
-        print(new_grid)
+            count += 1
+            grid = new_grid
+            print('Grid', grid, '\n', 'New grid', new_grid)
 
-        return new_grid
+        return grid
     else:
         return []
 

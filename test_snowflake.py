@@ -197,14 +197,14 @@ def test_check_one_touches_one(grid, y, x, expected):
     assert check_one_touches_one(grid, y, x) == expected
 
 
-# def test_snowflake_3_generations_5_x_5():
-#     assert snowflake(3) ==  [
-#                                 [0, 0, 1, 0, 0],
-#                                 [0, 0, 1, 0, 0],
-#                                 [1, 1, 1, 1, 1],
-#                                 [0, 0, 1, 0, 0],
-#                                 [0, 0, 1, 0, 0],
-#                             ]
+def test_snowflake_3_generations_5_x_5():
+    assert snowflake(3) ==  [
+                                [0, 0, 1, 0, 0],
+                                [0, 0, 1, 0, 0],
+                                [1, 1, 1, 1, 1],
+                                [0, 0, 1, 0, 0],
+                                [0, 0, 1, 0, 0],
+                            ]
 
 
 # def test_snowflake_4_generations_7_x_7():
