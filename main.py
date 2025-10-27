@@ -39,7 +39,7 @@ def main():
     packard_snowflake = snowflake(number_of_generations)
     
     for row in packard_snowflake:
-        print(" ".join(str(column) for column in row))
+        print(''.join('█' if column else ' ' for column in row))
 
 
 if __name__ == '__main__':
