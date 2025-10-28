@@ -28,21 +28,13 @@ def build_grid(grid_size):
     for i in range(grid_size):
         grid.append([0 for i in range(grid_size)])
     return grid
-
+    
 
 def check_one_touches_one(grid, y, x):
-    count = 0
-    if grid[y][x] == 1:
-        return True
-    if len(grid)-1 > y and grid[y+1][x] == 1:
-        count += 1
-    if len(grid)-1 > x and grid[y][x+1] == 1:
-        count += 1
-    if y != 0 and grid[y-1][x] == 1:
-        count += 1
-    if x != 0 and grid[y][x-1] == 1:
-        count += 1
-    if count == 1:
-        return True
-    else:
-        return False
+    check_list = [
+        len(grid)-1 > y and grid[y+1][x],
+        len(grid)-1 > x and grid[y][x+1],
+        y != 0 and grid[y-1][x],
+        x != 0 and grid[y][x-1]
+    ]
+    return sum(check_list) == 1 or grid[y][x] == 1
