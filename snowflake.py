@@ -8,7 +8,6 @@ def snowflake(number_of_generations):
     if number_of_generations > 0: # To pass empty grid test
         grid = build_grid(grid_size)
         grid[center][center] = 1 # center is 1
-        
         count = 2
         while count <= number_of_generations:
             new_grid = deepcopy(grid) # old grid doesnt change
