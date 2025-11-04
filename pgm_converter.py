@@ -28,4 +28,9 @@ from snowflake import snowflake
 
 
 def convert_to_pgm(snowflake, number_of_generations):
-    return 'P2\n1 1\n1\n1\n'
+    grid_size = number_of_generations*2-1
+    grid = ''
+    for row in snowflake:
+        col = [str(col) for col in row]
+        grid += ' '.join(col) + '\n'
+    return f'P2\n{grid_size} {grid_size}\n1\n{grid}'
