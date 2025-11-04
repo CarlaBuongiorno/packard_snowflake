@@ -23,3 +23,23 @@ def test_snowflake_2_becomes_a_string():
             '1 1 1\n'
             '0 1 0\n'
          )
+
+
+def test_snowflake_3_becomes_a_string():
+    assert convert_to_pgm(
+        [
+            [0, 0, 1, 0, 0],
+            [0, 0, 1, 0, 0],
+            [1, 1, 1, 1, 1],
+            [0, 0, 1, 0, 0],
+            [0, 0, 1, 0, 0],
+        ],
+        3
+    ) == (
+            'P2\n5 5\n1\n'
+            '0 0 1 0 0\n'
+            '0 0 1 0 0\n'
+            '1 1 1 1 1\n'
+            '0 0 1 0 0\n'
+            '0 0 1 0 0\n'
+         )
