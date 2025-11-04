@@ -29,15 +29,23 @@ Is that too easy? Bonus points available:
 import argparse
 
 from snowflake import snowflake
+from pgm_converter import convert_to_pgm
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('generations', type=int, help='Type the number of generations you want to see.')
+    parser.add_argument('--to-pgm', help="optional for creating a pgm file")
     args = parser.parse_args()
     number_of_generations = args.generations
+
     packard_snowflake = snowflake(number_of_generations)
     
+    if args.to_pgm:
+        pgm_conversion = convert_to_pgm(packard_snowflake, number_of_generations)
+        with open(args.to_pgm, "x") as f:
+            f.write(pgm_conversion)
+            
     for row in packard_snowflake:
         print(''.join('█' if column else ' ' for column in row))
 
