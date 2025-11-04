@@ -1,6 +1,6 @@
 import pytest
 
-from snowflake import snowflake, check_one_touches_one
+from snowflake import snowflake, should_cell_be_filled_in
 
 
 def test_snowflake_exists():
@@ -194,7 +194,7 @@ GEN_6 = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             (GEN_6, 1, 10, False),
 ])
 def test_check_one_touches_one(grid, y, x, expected):
-    assert check_one_touches_one(grid, y, x) == expected
+    assert should_cell_be_filled_in(grid, y, x) == expected
 
 
 def test_snowflake_3_generations_5_x_5():
