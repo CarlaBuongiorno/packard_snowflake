@@ -40,7 +40,8 @@ def is_given_cell_filled_in(grid, y, x):
 
 
 def check_if_only_1_neighbour_is_filled_in(grid, y, x):
-    return sum([is_given_cell_filled_in(grid, y-1, x),
-        is_given_cell_filled_in(grid, y+1, x),
-        is_given_cell_filled_in(grid, y, x-1),
-        is_given_cell_filled_in(grid, y, x+1)]) == 1
+    return sum(
+        [is_given_cell_filled_in(grid, y+y_neighbour, x+x_neighbour) 
+            for y_neighbour, x_neighbour in [(-1, 0), (+1, 0), (0, -1), (0, +1)]]
+    ) == 1
+
