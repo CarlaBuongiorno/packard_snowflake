@@ -16,7 +16,7 @@ Hint; you can use the █ character to represent a colored-in square.
 
 Is that too easy? Bonus points available:
 
-    Save the snowflake to a PGM file, as above.
+    Save the snowflake to a PGM file.
     Use the Blessed library to print the snowflakes out in different colors.
     Use Blessed, and animate the printing of the snowflake;
     print out the first generation, wait a second, print the next generation, wait, print the next...
@@ -27,12 +27,14 @@ Is that too easy? Bonus points available:
 '''
 
 import argparse
+import blessed
 
 from snowflake import snowflake
 from pgm_converter import convert_to_pgm
 
 
 def main():
+    term = blessed.Terminal()
     parser = argparse.ArgumentParser()
     parser.add_argument('generations', type=int, help='Type the number of generations you want to see.')
     parser.add_argument('--to-pgm', help="optional for creating a pgm file")
@@ -40,14 +42,18 @@ def main():
     number_of_generations = args.generations
 
     packard_snowflake = snowflake(number_of_generations)
+    print(packard_snowflake)
+
     
+    for row in packard_snowflake:
+        print(term.center(''.join('█' if cell else ' ' for cell in row)))
+    
+
     if args.to_pgm:
         pgm_conversion = convert_to_pgm(packard_snowflake, number_of_generations)
         with open(args.to_pgm, "x") as f:
             f.write(pgm_conversion)
             
-    for row in packard_snowflake:
-        print(''.join('█' if column else ' ' for column in row))
 
 
 if __name__ == '__main__':
