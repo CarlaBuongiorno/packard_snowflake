@@ -29,6 +29,7 @@ Is that too easy? Bonus points available:
 import argparse
 import blessed
 
+from random import randint
 from snowflake import snowflake
 from pgm_converter import convert_to_pgm
 
@@ -40,20 +41,22 @@ def main():
     parser.add_argument('--to-pgm', help="optional for creating a pgm file")
     args = parser.parse_args()
     number_of_generations = args.generations
-
     packard_snowflake = snowflake(number_of_generations)
-    print(packard_snowflake)
 
-    
+    gen_colours = {
+        gen: term.color_rgb(randint(1, 255), randint(1, 255), randint(1, 255))
+        for gen in range(number_of_generations + 1)
+    }
+
     for row in packard_snowflake:
-        print(term.center(''.join('█' if cell else ' ' for cell in row)))
-    
-
+        print(term.center(''.join(
+            gen_colours[generation]('█') if generation > 0 else ' ' for generation in row
+        )))
+        
     if args.to_pgm:
         pgm_conversion = convert_to_pgm(packard_snowflake, number_of_generations)
         with open(args.to_pgm, "x") as f:
             f.write(pgm_conversion)
-            
 
 
 if __name__ == '__main__':
