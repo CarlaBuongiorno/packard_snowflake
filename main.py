@@ -32,6 +32,7 @@ import blessed
 from random import randint
 from snowflake import snowflake
 from pgm_converter import convert_to_pgm
+from snowflake_representation import representation
 
 
 def main():
@@ -42,29 +43,9 @@ def main():
     args = parser.parse_args()
     number_of_generations = args.generations
     packard_snowflake = snowflake(number_of_generations)
+    snowflake_representation = representation(packard_snowflake, number_of_generations)
 
-    gen_colours = {
-        gen: term.color_rgb(randint(1, 255), randint(1, 255), randint(1, 255))
-        for gen in range(number_of_generations + 1)
-    }
-
-    # for row in packard_snowflake:
-    #     print(term.center(''.join(
-    #         gen_colours[generation]('█') if generation > 0 else ' ' for generation in row
-    #     )))
-
-    representation = []
-
-    for row in packard_snowflake:
-        gen = []
-        for generation in row:
-            if generation > 0:
-                gen.append(gen_colours[generation]('█'))
-            else:
-                gen.append(' ')
-        representation.append(''.join(gen))
-
-    for row in representation:
+    for row in snowflake_representation:
         print(term.center(row))
 
     if args.to_pgm:
