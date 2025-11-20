@@ -48,11 +48,25 @@ def main():
         for gen in range(number_of_generations + 1)
     }
 
+    # for row in packard_snowflake:
+    #     print(term.center(''.join(
+    #         gen_colours[generation]('█') if generation > 0 else ' ' for generation in row
+    #     )))
+
+    representation = []
+
     for row in packard_snowflake:
-        print(term.center(''.join(
-            gen_colours[generation]('█') if generation > 0 else ' ' for generation in row
-        )))
-        
+        gen = []
+        for generation in row:
+            if generation > 0:
+                gen.append(gen_colours[generation]('█'))
+            else:
+                gen.append(' ')
+        representation.append(''.join(gen))
+
+    for row in representation:
+        print(term.center(row))
+
     if args.to_pgm:
         pgm_conversion = convert_to_pgm(packard_snowflake, number_of_generations)
         with open(args.to_pgm, "x") as f:

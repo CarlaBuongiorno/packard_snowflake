@@ -233,7 +233,6 @@ def test_snowflake_5_generations_9_x_9():
                             ]
   
 
-
 def test_snowflake_6_generations_11_x_11():
     assert snowflake(6) ==  [
                                 [0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0],
