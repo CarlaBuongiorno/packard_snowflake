@@ -29,7 +29,6 @@ Is that too easy? Bonus points available:
 import argparse
 import blessed
 
-from random import randint
 from snowflake import snowflake
 from pgm_converter import convert_to_pgm
 from snowflake_representation import representation
