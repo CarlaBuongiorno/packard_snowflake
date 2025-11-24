@@ -28,10 +28,11 @@ Is that too easy? Bonus points available:
 
 import argparse
 import blessed
+import time
 
 from snowflake import snowflake
 from pgm_converter import convert_to_pgm
-from snowflake_representation import representation
+from snowflake_representation import representation, get_random_colours
 
 
 def main():
@@ -41,11 +42,26 @@ def main():
     parser.add_argument('--to-pgm', help="optional for creating a pgm file")
     args = parser.parse_args()
     number_of_generations = args.generations
-    packard_snowflake = snowflake(number_of_generations)
-    snowflake_representation = representation(packard_snowflake, number_of_generations)
+    gen_colours = get_random_colours(number_of_generations)
 
-    for row in snowflake_representation:
-        print(term.center(row))
+    animate = 1
+    center_y = term.height//2
+    print(term.clear)    
+    while animate <= number_of_generations:
+        packard_snowflake = snowflake(animate)
+        snowflake_representation = representation(packard_snowflake, gen_colours, term)
+        
+        # set cursor before drawing
+        y = center_y - len(snowflake_representation) // 2
+        print(term.move_y(y), end='')
+
+
+        for row in snowflake_representation:
+            print(term.center(row))
+
+        time.sleep(0.25)
+        print(term.home + term.clear, end='')
+        animate += 1
 
     if args.to_pgm:
         pgm_conversion = convert_to_pgm(packard_snowflake, number_of_generations)
